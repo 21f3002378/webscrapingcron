@@ -1,16 +1,24 @@
-name: Master
-on:
-  push:
-    branches:
-      - master
-  schedule:
-    - cron: '40 19 * * *'
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v1
-    - name: Running
-      run: |
-        echo "Running!"
+name: Daily Commit Job
 
+on:
+  schedule:
+    - cron: "30 2 * * *"  # Runs every day at 02:30 UTC
+
+  workflow_dispatch:  # Allows manual trigger from GitHub Actions UI
+
+jobs:
+  daily-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v1
+
+      - name: Update File - 21f3002378@ds.study.iitm.ac.in
+        run: |
+          echo "Last run: $(date)" > last_run.txt
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "21f3002378@ds.study.iitm.ac.in"
+          git add last_run.txt
+          git commit -m "Daily commit: $(date)"
+          git push
