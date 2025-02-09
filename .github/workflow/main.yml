@@ -2,7 +2,7 @@ name: Daily Commit Job
 
 on:
   schedule:
-    - cron: "30 2 * * *"  # Runs every day at 02:30 UTC
+    - cron: "10 2 * * *"  # Runs every day at 02:30 UTC
 
   workflow_dispatch:  # Allows manual trigger from GitHub Actions UI
 
