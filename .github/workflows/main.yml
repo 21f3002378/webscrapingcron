@@ -1,4 +1,4 @@
-name: Daily Commit Job
+name: 21f3002378@ds.study.iitm.ac.in
 
 on:
   schedule:
@@ -14,11 +14,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Update File - 21f3002378@ds.study.iitm.ac.in
+      - name: Update File - hello 
         run: |
-          echo "Last run: $(date)" > last_run.txt
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "21f3002378@ds.study.iitm.ac.in"
-          git add last_run.txt
-          git commit -m "Daily commit: $(date)"
-          git push
+          echo "hello" 
+          
