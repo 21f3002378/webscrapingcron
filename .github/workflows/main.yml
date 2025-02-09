@@ -17,4 +17,18 @@ jobs:
       - name: Set up Git with email 21f3002378@ds.study.iitm.ac.in 
         run: |
           echo "hello" 
+          git config --global user.name "github-actions"
+          git config --global user.email "21f3002378@ds.study.iitm.ac.in"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+
+
+      - name: Make a change to ensure commit
+        run: echo "Update: $(date)" >> log.txt  # Appends timestamp every run
+
+      - name: Commit and push changes
+        run: |
+          git add .
+          git commit -m "Automated daily commit"
+          git pull --rebase
+          git push origin main
           
